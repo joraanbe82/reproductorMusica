@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="./utilidades/utilidades.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="./clases/Top.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="./clases/Song.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="./clases/playlist.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="./storage/storageManager.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="./gestionplaylist.js" charset="UTF-8"></script>
+
+
+        
+    <script>
+        var playlist;
+        var playlist = new Playlist(null, "Rocking /w Charles")
+
+        let idInicial = new Date().getTime();
+
+        
+        let song1 = new Song(null, idInicial++, "Me falta el aliento", "Estopa", 285, 5);
+        let song2 = new Song(null, idInicial++, "Angie", "Rolling Stones", 198, 4);
+        let song3 = new Song(null, idInicial++, "Search & Destroy", "Metallica", 162, 5);
+        let song4 = new Song(null, idInicial++, "She is mine", "Interpol", 180, 4);
+        let song5 = new Song(null, idInicial++, "Bohemian Rhapsody", "Queen", 212, 3);
+        let song6 = new Song(null, idInicial++, "Imagine", "John Lennon", 242, 5);
+        let song7 = new Song(null, idInicial++, "Billie Jean", "Michael Jackson", 175, 5);
+        let song8 = new Song(null, idInicial++, "The Unforgiven", "Metallica", 188, 4);
+        let song9 = new Song(null, idInicial++, "Dont Stop Me Now", "Queen", 350, 2);
+        let song10 = new Song(null, idInicial++, "I Will Always Love You", "Whitney Houston", 243, 3);
+        let song11 = new Song(null, idInicial++, "Could you be loved", "Bob Marley", 256, 1);
+        let song12 = new Song(null, idInicial++, "Under Pressure", "Queen", 211, 4);
+        let song13 = new Song(null, idInicial++, "Start Me Up", "The Rolling Stones", 172, 5);
+        let song14 = new Song(null, idInicial++, "Born In The U.S.A.", "Bruce Springsteen", 252, 3);
+        let song15 = new Song(null, idInicial++, "Money for Nothing", "Rolling Stones", 191, 2);
+        let song16 = new Song(null, idInicial++, "Pastillas de freno", "Estopa", 167, 2);
+        let song17 = new Song(null, idInicial++, "No More Lonely Nights", "Paul McCartney", 251, 1);
+        let song18 = new Song(null, idInicial++, "Radio Ga Ga", "Queen", 171, 5);
+        let song19 = new Song(null, idInicial++, "Careless Whisper", "U2", 245, 3);
+        let song20 = new Song(null, idInicial++, "Ojitos Negros", "Estopa", 213, 3);
+        let song21 = new Song(null, idInicial++, "All apologies", "Nirvana", 124, 5);
+        let song22 = new Song(null, idInicial++, "Angie", "Rolling Stones", 147, 4);
+        let song23 = new Song(null, idInicial++, "Search & Destroy", "Metallica", 190, 5);
+        let song24 = new Song(null, idInicial++, "She's mine", "Interpol", 180, 5);
+
+
+        // let playlist = new Playlist(null,"MuerteMortal");
+        playlist.addSong(song1);
+        playlist.addSong(song2);
+        playlist.addSong(song3);
+        playlist.addSong(song4);
+        playlist.addSong(song5);
+        playlist.addSong(song6);
+        playlist.addSong(song7);
+        playlist.addSong(song8);
+        playlist.addSong(song9);
+        playlist.addSong(song10);
+        playlist.addSong(song11);
+        playlist.addSong(song12);
+        playlist.addSong(song13);
+        playlist.addSong(song14);
+        playlist.addSong(song15);
+        playlist.addSong(song16);
+        playlist.addSong(song17);
+        playlist.addSong(song18);
+        playlist.addSong(song19);
+        playlist.addSong(song20);
+        playlist.addSong(song21);
+        playlist.addSong(song22);
+        playlist.addSong(song23);
+        playlist.addSong(song24);
+        
+       playlist.top();
+       let jPlaylist = playlist.toJSONObject();
+       jPlaylist = JSON.stringify(jPlaylist);
+        console.log(jPlaylist);
+       jPlaylist = JSON.parse(jPlaylist);
+        console.log(jPlaylist);
+       let p2 = new Playlist(jPlaylist);
+
+       StoreManager.saveplaylist(playlist);
+
+        
+       
+    </script>
+
+</head>
+
+<body onload="cargarDatosIniciales()">
+    <form>
+        <span>AÑADIR CANCION</span>
+        <br>
+        <span>Titulo: </span>
+        <input type="text" id="title">
+        <br>
+        <span>Banda: </span>
+        <input type="text" id="banda">
+        <br>
+        <span>Duracion: </span>
+        <input type="text" id="duration">
+        <br>
+        <span>Rating: </span>
+        <select id="rating">
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+            <option value=5>5</option>
+        </select>
+        <input type="button" value="Añadir cancion" onclick=addSong();>
+        <input type="button" value="Pasar a JSON" onclick=ver();>
+    </form>
+    <span id="playlistName"></span>
+    <div id="songList"></div>
+
+</body>
+
+</html>
+
+
